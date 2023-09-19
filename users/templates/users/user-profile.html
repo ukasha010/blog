@@ -1,0 +1,17 @@
+{% extends 'blog/base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <div class="media">
+      <img class="rounded-circle account-img" src="{{post.author.profile.image.url}}">
+      {% if post.author == request.user %}
+      {% else %}
+      <a href="{% url 'user-follow' post.author%}" class="btn btn-outline-info">{{button_text}}</a>
+      {% endif %}
+      <div class="media-body">
+        <h2 class="account-heading">{{post.author}}</h2>
+        <p class="text-secondary">{{post.author.email}}</p>
+      </div>
+    </div>
+</div>
+{% endblock content %}

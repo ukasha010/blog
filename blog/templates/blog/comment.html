@@ -1,0 +1,32 @@
+{% extends 'blog/base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{post.title}}</legend>
+                {{form|crispy}}
+            </fieldset>
+            <div class="form-group mb-3 pt-3">
+                <button class="btn btn-outline-info" type="submit">Post</button>
+            </div>
+    </form>
+</div>
+<div class="card mt-4">
+    <div class="card-body">
+        {% for comment in comments %}
+        <div class="row border-top py-3">
+            <div class="col-auto">
+                <h6 class="card-title">{{ comment.user }}:</h6>
+            </div>
+            <div class="col">
+                <p class="card-text">{{ comment.comment }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}
